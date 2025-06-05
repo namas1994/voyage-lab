@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.brainUi.name }}
-          image: "{{ .Values.brainUi.image.repository }}:{{ .Values.brainUi.image.tag }}"
+          image: "{{ .Values.global.registry }}/{{ .Values.brainUi.image.repository }}:{{ .Values.brainUi.image.tag }}"
           imagePullPolicy: {{ .Values.brainUi.image.pullPolicy }}
           ports:
             - name: http

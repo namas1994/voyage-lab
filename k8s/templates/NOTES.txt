@@ -1,0 +1,5 @@
+
+Access URLs (NodePort enabled):
+------------------------------------------------------
+VL API  : http://localhost:32001
+VL UI   : http://localhost:32002

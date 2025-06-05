@@ -2,11 +2,13 @@
 global:
   environment: development
   corsOrigin: http://localhost:32002
+  # Set to "gcr.io/YOUR-PROJECT-ID" for GCP deployment
+  registry: "localhost:5110"
 
 brainApi:
   name: brain-api
   image:
-    repository: localhost:5110/vl/brain-api
+    repository: "vl/brain-api"
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -25,7 +27,7 @@ brainApi:
 brainUi:
   name: brain-ui
   image:
-    repository: localhost:5110/vl/brain-ui
+    repository: "vl/brain-ui"
     tag: latest
     pullPolicy: IfNotPresent
   service:
