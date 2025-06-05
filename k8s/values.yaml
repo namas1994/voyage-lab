@@ -1,0 +1,44 @@
+# Default values for voyagelab Helm chart
+global:
+  environment: development
+  corsOrigin: http://localhost:32002
+
+brainApi:
+  name: brain-api
+  image:
+    repository: localhost:5110/vl/brain-api
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 3000
+    nodePort: 32001
+    enableNodePort: true
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+brainUi:
+  name: brain-ui
+  image:
+    repository: localhost:5110/vl/brain-ui
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+    nodePort: 32002
+    enableNodePort: true
+  resources:
+    limits:
+      cpu: 300m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  config:
+    apiUrl: http://localhost:32001

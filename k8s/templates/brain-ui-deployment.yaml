@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-brain-ui
+  labels:
+    {{- include "voyagelab.labels" . | nindent 4 }}
+    app.kubernetes.io/component: brain-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "voyagelab.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: brain-ui
+  template:
+    metadata:
+      labels:
+        {{- include "voyagelab.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: brain-ui
+    spec:
+      containers:
+        - name: {{ .Values.brainUi.name }}
+          image: "{{ .Values.brainUi.image.repository }}:{{ .Values.brainUi.image.tag }}"
+          imagePullPolicy: {{ .Values.brainUi.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.brainUi.service.port }}
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: {{ .Values.global.environment }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/share/nginx/html/config.json
+              subPath: config.json
+          resources:
+            {{- toYaml .Values.brainUi.resources | nindent 12 }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ .Release.Name }}-brain-ui-config

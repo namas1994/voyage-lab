@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-brain-ui-config
+  labels:
+    {{- include "voyagelab.labels" . | nindent 4 }}
+    app.kubernetes.io/component: brain-ui
+data:
+  config.json: |
+    {
+      "vlApiUrl": "{{ .Values.brainUi.config.apiUrl }}"
+    }

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-brain-ui
+  labels:
+    {{- include "voyagelab.labels" . | nindent 4 }}
+    app.kubernetes.io/component: brain-ui
+spec:
+  # type: {{ .Values.brainUi.service.type }}
+  type: {{ if .Values.brainUi.service.enableNodePort }}NodePort{{ else }}ClusterIP{{ end }}
+  ports:
+    - port: {{ .Values.brainUi.service.port }}
+      targetPort: 80
+      {{- if .Values.brainUi.service.enableNodePort }}
+      nodePort: {{ .Values.brainUi.service.nodePort }}
+      {{- end }}
+  selector:
+    {{- include "voyagelab.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: brain-ui
