@@ -13,6 +13,8 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
 RUN pnpm run -r build
 RUN pnpm deploy --filter=@vl/brain-api --prod /prod/brain-api
 RUN pnpm deploy --filter=@vl/brain-ui --prod /prod/brain-ui
+RUN cp -r /usr/src/app/apps/brain-ui/dist /prod/brain-ui/
+RUN ls /prod/brain-ui
 
 FROM base AS brain-api
 COPY --from=build /prod/brain-api/dist /app/brain-api/dist

@@ -11,10 +11,8 @@ services:
     ports:
       - "30001:3000"
     environment:
-      VITE_USE_MOCKS: false
-      NODE_ENV: ${NODE_ENV}
-    volumes:
-      - ./provisioning/app/config.json:/usr/share/nginx/html/config.json
+      NODE_ENV: ${DC_NODE_ENV}
+      CORS_ORIGIN: ${DC_CORS_ORIGIN}
   brain-ui:
     image: vl/brain-ui:latest
     hostname: brain-ui.cdd
@@ -27,8 +25,6 @@ services:
     ports:
       - "8090:80"
     environment:
-      VITE_USE_MOCKS: false
-      NODE_ENV: ${NODE_ENV}
-      CORS_ORIGIN: ${CORS_ORIGIN}
+      NODE_ENV: ${DC_NODE_ENV}
     volumes:
       - ./provisioning/app/config.json:/usr/share/nginx/html/config.json
