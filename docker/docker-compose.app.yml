@@ -1,0 +1,34 @@
+services:
+  brain-api:
+    image: vl/brain-api:latest
+    hostname: brain-api.cdd
+    container_name: vl-brain-api
+    labels:
+      namespace: cdd
+    build:
+      context: ..
+      target: brain-api
+    ports:
+      - "30001:3000"
+    environment:
+      VITE_USE_MOCKS: false
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./provisioning/app/config.json:/usr/share/nginx/html/config.json
+  brain-ui:
+    image: vl/brain-ui:latest
+    hostname: brain-ui.cdd
+    container_name: vl-brain-ui
+    labels:
+      namespace: cdd
+    build:
+      context: ..
+      target: brain-ui
+    ports:
+      - "8090:80"
+    environment:
+      VITE_USE_MOCKS: false
+      NODE_ENV: ${NODE_ENV}
+      CORS_ORIGIN: ${CORS_ORIGIN}
+    volumes:
+      - ./provisioning/app/config.json:/usr/share/nginx/html/config.json

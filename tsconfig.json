@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "@tsconfig/recommended/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/node22/tsconfig.json"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "typeRoots": ["typings", "**/node_modules/@types"]
+  },
+  "exclude": ["**/dist", "node_modules", "apps/brain-ui"],
+  "references": [{ "path": "./services/brain-api" }]
+}

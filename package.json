@@ -1,0 +1,43 @@
+{
+    "name": "voyage-lab",
+    "version": "1.0.0",
+    "description": "IIT Patna Minor Project",
+    "type": "module",
+    "license": "ISC",
+    "directories": {
+        "doc": "docs",
+        "lib": "lib",
+        "test": "test"
+    },
+    "scripts": {
+        "build": "tsc --build",
+        "build:c": "tsc --build --clean",
+        "build:v": "tsc --build --verbose",
+        "clean": "rimraf -g -I **/node_modules",
+        "clean:build": "pnpm clean:dist && pnpm db:gen && pnpm build",
+        "clean:dist": "rimraf -g -I **/dist **/tsconfig.tsbuildinfo **/generated",
+        "dc:start": "docker compose up -d",
+        "dc:stop": "docker compose down",
+        "dc:build": "docker-compose build",
+        "dc:publish": "sh scripts/docker-tag-push.sh",
+        "k8s:f": "sh scripts/k8s-port-forward.sh",
+        "k8s:i": "sh scripts/k8s-deploy.sh",
+        "k8s:u": "helm uninstall dev",
+        "preinstall": "npx only-allow pnpm",
+        "watch:all": "sh scripts/watch-all.sh",
+        "watch:api": "pnpm --filter @vl/brain-api watch",
+        "watch:ui": "pnpm --filter @vl/brain-ui dev"
+    },
+    "engines": {
+        "node": ">= 22.14.0"
+    },
+    "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
+    "devDependencies": {
+        "@tsconfig/node22": "^22.0.1",
+        "@tsconfig/recommended": "^1.0.8",
+        "@tsconfig/strictest": "^2.0.5",
+        "@types/node": "^22.15.29",
+        "concurrently": "^9.1.2",
+        "rimraf": "^6.0.1"
+    }
+}
