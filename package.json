@@ -18,7 +18,7 @@
         "clean:dist": "rimraf -g -I **/dist **/tsconfig.tsbuildinfo **/generated",
         "dc:start": "docker compose up -d",
         "dc:stop": "docker compose down",
-        "dc:build": "docker-compose build",
+        "dc:build": "sh scripts/docker-build-push.sh",
         "dc:publish": "sh scripts/docker-tag-push.sh",
         "k8s:f": "sh scripts/k8s-port-forward.sh",
         "k8s:i": "sh scripts/k8s-deploy.sh",
