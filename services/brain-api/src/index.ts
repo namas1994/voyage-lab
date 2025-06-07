@@ -39,7 +39,13 @@ app.use("/knowledge", express.json({ limit: "200kb" }), KnowledgeRouter);
 
 // Basic endpoint
 app.get("/", (_req, res) => {
-  res.send("Hello from Express 5!");
+  res
+    .status(200)
+    .json({
+      message: "Welcome to the Brain API service!",
+      timeStamp: new Date().toISOString()
+    })
+    .send();
 });
 
 app.listen(port, () => {

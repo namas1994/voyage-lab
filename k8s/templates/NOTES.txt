@@ -1,5 +1,31 @@
-
+{{- if .Values.global.enableNodePort }}
 Access URLs (NodePort enabled):
 ------------------------------------------------------
-VL API  : http://localhost:32001
-VL UI   : http://localhost:32002
+{{- if .Values.brainApi.service.enableNodePort }}
+VL API  : http://localhost:{{ .Values.brainApi.service.nodePort }}
+{{- end }}
+{{- if .Values.brainUi.service.enableNodePort }}
+VL UI   : http://localhost:{{ .Values.brainUi.service.nodePort }}
+{{- end }}
+{{- end }}
+
+{{- if .Values.global.enableLoadBalancer }}
+Access URLs (LoadBalancer enabled):
+------------------------------------------------------
+VL API  : http://<EXTERNAL-IP>:{{ .Values.brainApi.service.port }}
+VL UI   : http://<EXTERNAL-IP>:{{ .Values.brainUi.service.port }}
+
+NOTE: 
+  It may take a few minutes for the LoadBalancer IP to be available.
+  You can watch the status using:
+  
+  kubectl get svc --namespace {{ .Release.Namespace }} -w {{ .Release.Name }}-brain-api {{ .Release.Name }}-brain-ui
+  
+  To get the external IP addresses:
+  
+  export API_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ .Release.Name }}-brain-api -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo "VL API is available at http://$API_IP:{{ .Values.brainApi.service.port }}"
+  
+  export UI_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ .Release.Name }}-brain-ui -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo "VL UI is available at http://$UI_IP:{{ .Values.brainUi.service.port }}"
+{{- end }}

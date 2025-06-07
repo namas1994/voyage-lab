@@ -6,14 +6,13 @@ metadata:
     {{- include "voyagelab.labels" . | nindent 4 }}
     app.kubernetes.io/component: brain-api
 spec:
-  # type: {{ .Values.brainApi.service.type }}
-  type: {{ if .Values.brainApi.service.enableNodePort }}NodePort{{ else }}ClusterIP{{ end }}
+  type: {{ if .Values.global.enableLoadBalancer }}LoadBalancer{{ else if .Values.global.enableNodePort }}NodePort{{ else }}ClusterIP{{ end }}
   ports:
     - protocol: TCP
       port: {{ .Values.brainApi.service.port }}
-      targetPort: 3000
+      targetPort: {{ .Values.brainApi.service.containerPort }}
       name: http
-      {{- if .Values.brainApi.service.enableNodePort }}
+      {{- if .Values.global.enableNodePort }}
       nodePort: {{ .Values.brainApi.service.nodePort }}
       {{- end }}
   selector:

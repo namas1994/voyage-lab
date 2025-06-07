@@ -23,7 +23,7 @@ spec:
           imagePullPolicy: {{ .Values.brainApi.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.brainApi.service.port }}
+              containerPort: {{ .Values.brainApi.service.containerPort }}
               protocol: TCP
           env:
             - name: NODE_ENV

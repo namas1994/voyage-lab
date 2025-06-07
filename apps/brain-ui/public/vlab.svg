@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Circular background -->
+  <circle cx="50" cy="50" r="48" fill="#1a2b4a" />
+  <circle cx="50" cy="50" r="45" fill="#2a4073" />
+  
+  <!-- Compass directions (subtler) -->
+  <polygon points="50,8 53,50 50,92 47,50" fill="#f0f0f0" opacity="0.9" />
+  <polygon points="8,50 50,47 92,50 50,53" fill="#f0f0f0" opacity="0.9" />
+
+  <!-- Computer monitor -->
+  <rect x="30" y="30" width="40" height="30" rx="2" fill="#dadada" fill-opacity="0.7"/>
+  <rect x="33" y="33" width="34" height="24" fill="#232323" />
+  
+  <!-- Monitor stand -->
+  <polygon points="42,60 58,60 55,65 45,65" fill="#dadada" fill-opacity="0.7"/>
+  <rect x="43" y="65" width="14" height="3" rx="1" fill="#b8b8b8" />
+  
+  <!-- Circuit board pattern on screen -->
+  <path d="M40,38 h20 M40,43 h12 M52,43 h8 M40,48 h8 M65,48 h-12 M40,53 h25" 
+        stroke="#3bde7c" stroke-width="1" fill="none" fill-opacity="0.7"/>
+  
+  <!-- Binary code bits -->
+  <text x="38" y="41" fill="#3bde7c" font-family="monospace" font-size="4">10</text>
+  <text x="60" y="41" fill="#3bde7c" font-family="monospace" font-size="4">01</text>
+  <text x="53" y="51" fill="#3bde7c" font-family="monospace" font-size="4">10</text>
+  <text x="38" y="56" fill="#3bde7c" font-family="monospace" font-size="4">01</text>
+  
+  <!-- Cursor -->
+  <polygon points="58,46 61,46 59.5,49" fill="#ffffff" />
+</svg>

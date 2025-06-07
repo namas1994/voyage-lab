@@ -43,3 +43,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.api-status {
+  /* font-weight: 500; */
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.status-icon {
+  color: #4CAF50;
+  margin-right: 8px;
+}

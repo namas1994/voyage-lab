@@ -6,12 +6,11 @@ metadata:
     {{- include "voyagelab.labels" . | nindent 4 }}
     app.kubernetes.io/component: brain-ui
 spec:
-  # type: {{ .Values.brainUi.service.type }}
-  type: {{ if .Values.brainUi.service.enableNodePort }}NodePort{{ else }}ClusterIP{{ end }}
+  type: {{ if .Values.global.enableLoadBalancer }}LoadBalancer{{ else if .Values.global.enableNodePort }}NodePort{{ else }}ClusterIP{{ end }}
   ports:
     - port: {{ .Values.brainUi.service.port }}
-      targetPort: 80
-      {{- if .Values.brainUi.service.enableNodePort }}
+      targetPort: {{ .Values.brainUi.service.containerPort }}
+      {{- if .Values.global.enableNodePort }}
       nodePort: {{ .Values.brainUi.service.nodePort }}
       {{- end }}
   selector:

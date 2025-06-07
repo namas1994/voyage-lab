@@ -1,9 +1,11 @@
 # Default values for voyagelab Helm chart
 global:
   environment: development
-  corsOrigin: http://localhost:32002
+  corsOrigin: http://localhost:8090
   # Set to "gcr.io/YOUR-PROJECT-ID" for GCP deployment
   registry: "localhost:5110"
+  enableNodePort: false
+  enableLoadBalancer: true
 
 brainApi:
   name: brain-api
@@ -13,9 +15,9 @@ brainApi:
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
-    port: 3000
+    containerPort: 3000
+    port: 3090
     nodePort: 32001
-    enableNodePort: true
   resources:
     limits:
       cpu: 500m
@@ -32,9 +34,9 @@ brainUi:
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
-    port: 80
+    containerPort: 80
+    port: 8090
     nodePort: 32002
-    enableNodePort: true
   resources:
     limits:
       cpu: 300m
@@ -43,4 +45,4 @@ brainUi:
       cpu: 100m
       memory: 128Mi
   config:
-    apiUrl: http://localhost:32001
+    apiUrl: http://localhost:3090

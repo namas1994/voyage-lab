@@ -16,3 +16,5 @@ pnpm sh ./scripts/docker-tag-push.sh asia-southeast1-docker.pkg.dev/sustained-ho
 helm install my-release ./chart-name --set global.registry.url="asia-southeast1-docker.pkg.dev/sustained-hold-460714-m3"
 ```
 
+
+gcloud container clusters get-credentials autopilot-cluster-2 --region asia-south1 --project sustained-hold-460714-m3
