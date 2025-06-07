@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-brain-ui-config
+  name: {{ .Release.Name }}-brain-common-config
   labels:
     {{- include "voyagelab.labels" . | nindent 4 }}
-    app.kubernetes.io/component: brain-ui
+    app.kubernetes.io/component: brain-common
 data:
   config.json: |
     {
-      "vlApiUrl": "{{ .Values.brainUi.config.apiUrl }}"
+      "vlApiUrl": "http://{{ .Release.Name }}-brain-api.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.brainApi.service.port }}"
     }
+  CORS_ORIGIN: http://localhost:3090
+  NODE_ENV: {{ .Values.global.environment }}

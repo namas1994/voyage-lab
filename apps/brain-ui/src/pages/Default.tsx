@@ -45,7 +45,14 @@ export function Default() {
           count is {count}
         </button>
         <p className="api-status">
-          <span className="status-icon">✓</span> {srvMessage.message}
+          <span
+            className={`status-icon ${
+              srvMessage.message ? "success" : "error"
+            }`}
+          >
+            {srvMessage.message ? "✓" : "❌"}
+          </span>{" "}
+          {srvMessage.message || "API connection failed"}
         </p>
       </div>
       <p className="read-the-docs">

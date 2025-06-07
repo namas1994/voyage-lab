@@ -37,4 +37,4 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: {{ .Release.Name }}-brain-ui-config
+            name: {{ .Release.Name }}-brain-common-config

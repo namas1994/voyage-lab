@@ -1,7 +1,6 @@
 # Default values for voyagelab Helm chart
 global:
   environment: development
-  corsOrigin: http://localhost:8090
   # Set to "gcr.io/YOUR-PROJECT-ID" for GCP deployment
   registry: "localhost:5110"
   enableNodePort: false

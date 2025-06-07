@@ -26,9 +26,15 @@ spec:
               containerPort: {{ .Values.brainApi.service.containerPort }}
               protocol: TCP
           env:
-            - name: NODE_ENV
-              value: {{ .Values.global.environment }}
             - name: CORS_ORIGIN
-              value: {{ .Values.global.corsOrigin }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-brain-common-config
+                  key: CORS_ORIGIN
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-brain-common-config
+                  key: NODE_ENV
           resources:
             {{- toYaml .Values.brainApi.resources | nindent 12 }}

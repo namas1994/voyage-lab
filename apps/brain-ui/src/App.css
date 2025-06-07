@@ -51,6 +51,13 @@
 }
 
 .status-icon {
-  color: #4CAF50;
   margin-right: 8px;
+}
+
+.status-icon.success {
+  color: #4CAF50; /* Green */
+}
+
+.status-icon.error {
+  color: #F44336; /* Red */
 }

@@ -43,7 +43,8 @@ app.get("/", (_req, res) => {
     .status(200)
     .json({
       message: "Welcome to the Brain API service!",
-      timeStamp: new Date().toISOString()
+      timeStamp: new Date().toISOString(),
+      cors: process.env.CORS_ORIGIN || "Not configured"
     })
     .send();
 });
